@@ -1,4 +1,4 @@
-import { Encrypter, AccountModel, AddAccountModel } from './adb-add-account-protocols'
+import { Encrypter, AccountModel, AddAccountModel } from './db-add-account-protocols'
 import { DbAddAccount } from './db-add-account'
 import { AddAccountRepository } from '../../protocols/add-account-repository'
 
