@@ -1,6 +1,5 @@
 import { LogErrorRepository } from '../../data/protocols/log-error-repository'
 import { AccountModel } from '../../domain/models/account'
-import { ServerError } from '../../presentation/errors'
 import { serverError, ok } from '../../presentation/helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../presentation/protocols'
 import { LogControllerDecorator } from './log'
@@ -16,7 +15,7 @@ const makeController = (): Controller => {
 
 const makeLogRepositoryError = (): LogErrorRepository => {
   class LogErrorRepositoryStub implements LogErrorRepository {
-    async log (stack: string): Promise<void> {
+    async logError (stack: string): Promise<void> {
       return new Promise(resolve => resolve())
     }
   }
@@ -85,7 +84,7 @@ describe('Log Controller Decorator', () => {
 
   test('Should return the same retult of the controller', async () => {
     const { sut, controllerStub, logErrorRepository } = makeSut()
-    const logSpy = jest.spyOn(logErrorRepository, 'log')
+    const logSpy = jest.spyOn(logErrorRepository, 'logError')
     jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(new Promise(resolve => resolve(makeFakeServerError())))
     await sut.handle(makeFakeRequest())
     expect(logSpy).toHaveBeenCalledWith('any_stack')
