@@ -60,7 +60,7 @@ interface SutTypes {
   loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
   hashComparerStub: HashComparer
   tokenGenaratorStub: TokenGenerator
-  updateAccessTokenRepository: UpdateAccessTokenRepository
+  updateAccessTokenRepositoryStub: UpdateAccessTokenRepository
 }
 
 const makeSut = (): SutTypes => {
@@ -142,5 +142,11 @@ describe('DbAuthencation UseCase', () => {
     const updateSpy = jest.spyOn(updateAccessTokenRepositoryStub, 'update')
     await sut.auth(makeFakeAuthentication())
     await expect(updateSpy).toHaveBeenCalledWith('any_id', 'any_token')
+  })
+  test('Should throw if UpdateAccessTokenRepository throws', async () => {
+    const { updateAccessTokenRepositoryStub, sut } = makeSut()
+    jest.spyOn(updateAccessTokenRepositoryStub, 'update').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const promise = sut.auth(makeFakeAuthentication())
+    await expect(promise).rejects.toThrow()
   })
 })
