@@ -6,9 +6,10 @@ import { LogMongoRepository } from '../../../infra/db/mongodb/log/log-mongo-repo
 import { makeLoginValidation } from "./login-validation-factory";
 import { BcryptAdapter } from "../../../infra/criptography/bcrypt-adapter/bcrypt-adapater";
 import { JwtAdapter } from "../../../infra/criptography/jwt-adapter/jwt-adapter";
+import { Controller } from "../../../presentation/protocols";
 import env from "../../config/env";
 
-export const makeLoginController = (): LoginController => {
+export const makeLoginController = (): Controller => {
     const salt = 12
     const jwtAdapter = new JwtAdapter(env.jwtSecret)
     const bCryptAdapter = new BcryptAdapter(salt)
