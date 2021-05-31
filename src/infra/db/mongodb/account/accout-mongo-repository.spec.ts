@@ -6,7 +6,7 @@ const makeSut = (): AccountMongoRepository => {
   return new AccountMongoRepository()
 }
 
-let accountCollection:Collection
+let accountCollection: Collection
 
 describe('Account Mongo Repository', () => {
   beforeAll(async () => {
@@ -67,9 +67,8 @@ describe('Account Mongo Repository', () => {
     const fakeAccount = result.ops[0]
     expect(fakeAccount.accessToken).toBeFalsy()
     await sut.updateAccessToken(fakeAccount._id, 'any_token')
-    const account = await accountCollection.findOne({_id: fakeAccount._id})
+    const account = await accountCollection.findOne({ _id: fakeAccount._id })
     expect(account).toBeTruthy()
     expect(account.accessToken).toBe('any_token')
-  })  
-
+  })
 })

@@ -3,7 +3,7 @@ import { EmailValidator } from '../../protocols'
 import { Validation } from '../../protocols/validation'
 
 export class EmailValidation implements Validation {
-  constructor(
+  constructor (
     private readonly fieldName: string,
     private readonly emailValidator: EmailValidator
   ) { }
