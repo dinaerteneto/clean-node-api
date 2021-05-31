@@ -1,5 +1,8 @@
+import env from '../../config/env'
 import { DbAddAccount } from '../../../data/usecases/add-account/db-add-account'
+import { DbAuthencation } from '../../../data/usecases/authentication/db-authentication'
 import { BcryptAdapter } from '../../../infra/criptography/bcrypt-adapter/bcrypt-adapater'
+import { JwtAdapter } from '../../../infra/criptography/jwt-adapter/jwt-adapter'
 import { AccountMongoRepository } from '../../../infra/db/mongodb/account/account-mongo-repository'
 import { LogMongoRepository } from '../../../infra/db/mongodb/log/log-mongo-repository'
 import { SignUpController } from '../../../presentation/controllers/signup/signup-controller'
@@ -12,7 +15,11 @@ export const makeSignUpController = (): Controller => {
   const bCryptAdapter = new BcryptAdapter(salt)
   const accountMongoRepository = new AccountMongoRepository()
   const dbAddAccount = new DbAddAccount(bCryptAdapter, accountMongoRepository)
-  const signUpController = new SignUpController(dbAddAccount, makeSignUpValidation())
+
+  const jwtAdapter = new JwtAdapter(env.jwtSecret)
+  const dbAuthencation = new DbAuthencation(accountMongoRepository, bCryptAdapter, jwtAdapter, accountMongoRepository)
+
+  const signUpController = new SignUpController(dbAddAccount, makeSignUpValidation(), dbAuthencation)
   const logMongoRepository = new LogMongoRepository()
   return new LogControllerDecorator(signUpController, logMongoRepository)
 }

@@ -4,11 +4,10 @@ import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helpers'
 import { Collection } from 'mongodb'
 import { hash } from 'bcrypt'
 
-let accountCollection:Collection
+let accountCollection: Collection
 
 describe('Login Routes', () => {
   beforeAll(async () => {
-    console.log(process.env.MONGO_URL)
     await MongoHelper.connect(process.env.MONGO_URL)
   })
 
@@ -48,7 +47,7 @@ describe('Login Routes', () => {
         .post('/api/login')
         .send({
           email: 'dinaerteneto@gmail.com',
-          password: 'neto123',
+          password: 'neto123'
         })
         .expect(200)
     })
@@ -58,10 +57,9 @@ describe('Login Routes', () => {
         .post('/api/login')
         .send({
           email: 'dinaerteneto@gmail.com',
-          password: 'neto123',
+          password: 'neto123'
         })
         .expect(401)
     })
   })
-
 })
