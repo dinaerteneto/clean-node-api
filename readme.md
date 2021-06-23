@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.com/dinaerteneto/clean-node-api.svg?branch=master)](https://travis-ci.com/dinaerteneto/clean-node-api)
-
 [![Coverage Status](https://coveralls.io/repos/github/dinaerteneto/clean-node-api/badge.svg?branch=master)](https://coveralls.io/github/dinaerteneto/clean-node-api?branch=master)
 
 # **Clean Node API**
