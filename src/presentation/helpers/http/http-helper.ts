@@ -1,6 +1,6 @@
-import { ServerError } from '../../errors'
-import { UnauthorizedError } from '../../errors/unauthorid-error'
-import { HttpResponse } from '../../protocols/http'
+import { ServerError } from '@/presentation/errors'
+import { UnauthorizedError } from '@/presentation/errors/unauthorid-error'
+import { HttpResponse } from '@/presentation/protocols/http'
 
 export const forbidden = (error: Error): HttpResponse => ({
   statusCode: 403,
