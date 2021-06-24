@@ -13,7 +13,7 @@ const makeFakeAddSurvey = (): AddSurveyModel => {
   }
 }
 
-interface SutTypes {
+type SutTypes = {
   sut: DbAddSurvey
   addSurveyRepositoryStub: AddSurveyRepository
 }
