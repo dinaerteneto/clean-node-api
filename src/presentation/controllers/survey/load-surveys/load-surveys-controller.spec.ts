@@ -67,7 +67,7 @@ describe('LoadSurveysController', () => {
     expect(httpResponse).toEqual(ok(makeFakeSurveys()))
   })
 
-  test('Should return 2044 if LoadSurvey empty', async () => {
+  test('Should return 204 if LoadSurvey empty', async () => {
     const { sut, loadSurveyStub } = makeSut()
     jest.spyOn(loadSurveyStub, 'load').mockReturnValueOnce(new Promise(resolve => resolve([])))
     const httpResponse = await sut.handle({})
