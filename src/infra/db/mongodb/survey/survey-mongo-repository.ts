@@ -1,5 +1,5 @@
 import { AddSurveyModel, AddSurveyRepository } from '@/data/usecases/survey/add-survey/db-add-survey-protocols'
-import { LoadSurveysRepository } from '@/data/usecases/survey/load-survey/db-load-surveys-protocols'
+import { LoadSurveysRepository } from '@/data/usecases/survey/load-surveys/db-load-surveys-protocols'
 import { SurveyModel } from '@/domain/models/survey'
 import { MongoHelper } from '../helpers/mongo-helpers'
 
