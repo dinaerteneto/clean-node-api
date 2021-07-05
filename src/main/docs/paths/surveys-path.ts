@@ -33,6 +33,15 @@ export const surveyPath = {
     }],
     tags: ['Enquete'],
     summary: 'Api para criar uma enquete',
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/schemas/addSurveyParams'
+          }
+        }
+      }
+    },
     responses: {
       204: {
         description: 'Sucesso'
