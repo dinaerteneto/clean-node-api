@@ -1,6 +1,15 @@
-import { loginPath } from './paths/login-path'
-import { errorSchema, loginParamsSchema, accountSchema } from './schemas'
-import { badRequest, serverError, unauthorized, notFound } from './components'
+import { loginPath, surveyPath, signupPath } from './paths'
+import {
+  errorSchema,
+  loginParamsSchema,
+  accountSchema,
+  surveyAnswerSchema,
+  surveysSchema,
+  surveySchema,
+  apiKeyAuthSchema,
+  signUpParamsSchema
+} from './schemas'
+import { badRequest, serverError, unauthorized, notFound, forbidden } from './components'
 
 export default {
   openapi: '3.0.0',
@@ -8,6 +17,10 @@ export default {
     title: 'Clean Node Api',
     description: 'Api do curso do mango pra realizar enquete entre programadores',
     version: '1.0.0'
+  },
+  license: {
+    name: 'GPL-3.0-or-later',
+    url: 'https://spdx.org/licenses/GPL-3.0.html'
   },
   servers: [
     { url: '/api' }
@@ -17,18 +30,28 @@ export default {
     { name: 'Enquete' }
   ],
   paths: {
-    '/login': loginPath
+    '/login': loginPath,
+    '/signup': signupPath,
+    '/surveys': surveyPath
   },
   schemas: {
     account: accountSchema,
     loginParams: loginParamsSchema,
-    error: errorSchema
+    error: errorSchema,
+    surveys: surveysSchema,
+    survey: surveySchema,
+    surveyAnswerSchema: surveyAnswerSchema,
+    signUpParamsSchema: signUpParamsSchema
   },
   components: {
+    SecuritySchemes: {
+      apiKeyAuth: apiKeyAuthSchema
+    },
     badRequest,
     unauthorized,
     serverError,
-    notFound
+    notFound,
+    forbidden
   }
 
 }
