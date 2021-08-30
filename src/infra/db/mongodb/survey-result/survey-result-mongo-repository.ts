@@ -6,9 +6,9 @@ import { SaveSurveyResultParams } from '@/domain/usecases/survey-result/save-sur
 import { ObjectId } from 'mongodb'
 
 export class SurveyResultMongoRepository implements SaveSurveyResultRepository, LoadSurveyResultRepository {
-  async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
+  async save (data: SaveSurveyResultParams): Promise<void> {
     const surveyCollection = await MongoHelper.getCollection('surveyResults')
-    const res = await surveyCollection.findOneAndUpdate({
+    await surveyCollection.findOneAndUpdate({
       surveyId: data.surveyId,
       accountId: data.accountId
     }, {
@@ -20,8 +20,6 @@ export class SurveyResultMongoRepository implements SaveSurveyResultRepository, 
       upsert: true,
       returnOriginal: false
     })
-
-    return res.value && MongoHelper.map(res.value)
   }
 
   async loadBySurveyId (surveyId: string): Promise<SurveyResultModel> {
