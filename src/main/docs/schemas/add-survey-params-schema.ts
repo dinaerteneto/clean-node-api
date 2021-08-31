@@ -3,5 +3,6 @@ export const AddSurveyParamsSchema = {
   properties: {
     question: { type: 'string' },
     answers: { type: 'array', items: { $: '#/schemas/surveyAnswer' } }
-  }
+  },
+  required: ['accessToken']
 }

@@ -5,5 +5,6 @@ export const surveySchema = {
     question: { type: 'string' },
     answers: { type: 'array', items: { $: '#/schemas/surveyAnswer' } },
     date: { type: 'string' }
-  }
+  },
+  required: ['id', 'question', 'answers', 'date']
 }

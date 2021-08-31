@@ -3,5 +3,6 @@ export const surveyAnswerSchema = {
   properties: {
     image: { type: 'string' },
     answers: { type: 'string' }
-  }
+  },
+  required: ['answer']
 }
