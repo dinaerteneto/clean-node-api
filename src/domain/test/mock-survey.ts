@@ -6,7 +6,14 @@ export const mockSurveyModel = (): SurveyModel => ({
   question: 'any_question',
   createdAt: new Date(),
   answers: [
-    { image: 'any_image', answer: 'any_answer' }
+    {
+      answer: 'any_answer',
+      image: 'any_image'
+    },
+    {
+      answer: 'other_answer',
+      image: 'any_image'
+    }
   ]
 })
 
@@ -16,9 +23,13 @@ export const mockSurveyModels = (): SurveyModel[] => {
       id: 'any_id',
       question: 'any_question',
       createdAt: new Date(),
-      answers: [
-        { image: 'any_image', answer: 'any_answer' }
-      ]
+      answers: [{
+        image: 'any_image',
+        answer: 'any_answer'
+      }, {
+        image: 'any_image',
+        answer: 'other_answer'
+      }]
     },
     {
       id: 'other_id',

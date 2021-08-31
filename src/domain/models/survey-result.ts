@@ -2,7 +2,7 @@ export type SurveyResultModel = {
   surveyId: string
   question: string
   answers: SurveyResultAnswerModel[]
-  date: Date
+  createdAt: Date
 }
 
 type SurveyResultAnswerModel = {
