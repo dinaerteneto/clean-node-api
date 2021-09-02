@@ -1,5 +1,6 @@
 import { AddSurvey } from '@/data/usecases/survey/add-survey/db-add-survey-protocols'
 import { SurveyModel } from '@/domain/models/survey'
+import { LoadAnsnwersBySurvey } from '@/domain/usecases/survey/load-answers-by-survey'
 
 export const mockSurveyModel = (): SurveyModel => ({
   id: 'any_id',
@@ -51,4 +52,8 @@ export const mockAddSurveyParams = (): AddSurvey.Params => {
     question: 'any_question',
     createdAt: new Date()
   }
+}
+
+export const mockSurveyAnswers = (): LoadAnsnwersBySurvey.Result => {
+  return ['any_answer', 'other_answer']
 }
